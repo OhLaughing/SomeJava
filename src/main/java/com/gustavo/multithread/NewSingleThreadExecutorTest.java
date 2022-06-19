@@ -1,5 +1,7 @@
 package com.gustavo.multithread;
 
+import org.apache.commons.lang3.concurrent.BasicThreadFactory;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -8,7 +10,7 @@ import java.util.concurrent.Executors;
  */
 public class NewSingleThreadExecutorTest {
     public static void main(String[] args) {
-        ExecutorService service = Executors.newSingleThreadExecutor();
+        ExecutorService service = Executors.newSingleThreadExecutor(new BasicThreadFactory.Builder().namingPattern("basicThreadFactory-").build());
         for (int i = 0; i < 10; i++) {
             Runnable runnable = new MyRunnable(i);
             service.submit(runnable);
